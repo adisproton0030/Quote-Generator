@@ -24,7 +24,7 @@ async function getQuotes() {
 
     try {
         // Try fetching from ZenQuotes (with CORS proxy)
-        const response = await fetch(proxyUrl + encodeURIComponent(zenQuotesUrl));
+        const response = await fetch(proxyUrl + encodeURIComponent(zenQuotesUrl), { cache: "no-store" });
         const data = await response.json();
         const quoteData = JSON.parse(data.contents)[0]; // Extract first quote
         displayQuote(quoteData.q, quoteData.a);
@@ -32,7 +32,7 @@ async function getQuotes() {
         console.warn("ZenQuotes failed, trying Quotable API...");
         try {
             // Fallback to Quotable API if ZenQuotes fails
-            const response = await fetch(quotableUrl);
+            const response = await fetch(quotableUrl, { cache: "no-store" });
             const data = await response.json();
             displayQuote(data.content, data.author);
         } catch (error) {
@@ -63,5 +63,6 @@ twitterBtn.addEventListener("click", tweetQuote);
 
 // On Load, get a quote
 getQuotes();
+
 
 
