@@ -30,7 +30,7 @@ function newQuote() {
 // Get quotes from API 
 async function getQuotes() {
     loading();
-    const apiUrl ="https://api.quotable.io/random";
+    const apiUrl ="https://zenquotes.io/api/random";
     try {
 const response = await fetch(apiUrl);
 apiQuotes = await response.json();
